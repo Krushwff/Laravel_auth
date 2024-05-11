@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AuthManager;
+use App\Http\Controllers\ForgetPasswordManager;
 use Illuminate\Support\Facades\Route;
 
 
@@ -18,4 +19,7 @@ Route::group(['middleware' => 'auth'], function () {
         return 'Hi';
     });
 });
-
+ROute::get('/forget-password', [ForgetPasswordManager::class, 'forgetPassword'])->name('forget.password');
+ROute::post('/forget-password', [ForgetPasswordManager::class, 'forgetPasswordPost'])->name('forget.password.post');
+Route::get('/reset-password/{token}', [ForgetPasswordManager::class, 'resetPassword'])->name('reset.password');
+Route::post('/reset-password', [ForgetPasswordManager::class, 'resetPasswordPost'])->name('reset.password.post');
